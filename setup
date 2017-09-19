@@ -2,9 +2,9 @@
 
 set -e
 
-ln -sv .vimrc ~/
-ln -sv $( pwd ) ~/.vim
-
 git submodule update --init
+
+puppet resource file "$HOME/.vimrc" ensure=link target="$( pwd )/.vimrc"
+puppet resource file "$HOME/.vim" ensure=link target="$( pwd )"
 
 puppet resource package puppet-lint provider=gem ensure=installed

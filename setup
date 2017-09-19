@@ -2,7 +2,8 @@
 
 set -e
 
-ln -v .vim ~/
+ln -sv .vimrc ~/
+ln -sv $( pwd ) ~/.vim
 
 git submodule update --init
 

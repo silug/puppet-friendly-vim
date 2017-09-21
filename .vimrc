@@ -32,6 +32,10 @@ vnoremap < <gv
 " From @nelstrom, via @wnodom and @CrypticSwarm.
 vnoremap . :normal .<CR>
 
+" Enable the mouse.
+" Shift+mouse in xterm reverts to normal xterm behavior.
+set mouse+=a
+
 " Enable pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()

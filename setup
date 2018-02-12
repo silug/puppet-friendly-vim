@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ -f /etc/profile.d/puppet-agent.sh ] ; then
+    . /etc/profile.d/puppet-agent.sh
+else
+    export PATH=$PATH:/opt/puppetlabs/bin
+fi
+
 set -e
 
 cd $( dirname "$0" ) || :

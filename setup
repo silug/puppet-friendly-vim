@@ -2,9 +2,12 @@
 
 set -e
 
+cd $( dirname "$0" ) || :
+
 git submodule update --init
 
 puppet resource file "$HOME/.vimrc" ensure=link target="$( pwd )/.vimrc"
 puppet resource file "$HOME/.vim" ensure=link target="$( pwd )"
 
-puppet resource package puppet-lint provider=gem ensure=installed
+puppet resource package puppet-lint provider=gem ensure=installed || \
+    sudo puppet resource package puppet-lint provider=gem ensure=installed

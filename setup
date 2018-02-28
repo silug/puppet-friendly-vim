@@ -15,5 +15,8 @@ git submodule update --init
 puppet resource file "$HOME/.vimrc" ensure=link target="$( pwd )/.vimrc"
 puppet resource file "$HOME/.vim" ensure=link target="$( pwd )"
 
-puppet resource package puppet-lint provider=gem ensure=installed || \
+if [ "$( facter os.family )" = RedHat ] ; then
+    sudo $( which puppet ) resource package rubygem-puppet-lint ensure=installed
+else
     sudo $( which puppet ) resource package puppet-lint provider=gem ensure=installed
+fi
